@@ -1,0 +1,46 @@
+Verificando certificados SSL para as URLs listadas no arquivo...
+--------------------------------------------------
+URL: vt.bemfacilcabo.com.br
+  Início da validade: 14-07-2025
+  Vencimento: 12-10-2025
+--------------------------------------------------
+URL: admin.bemfacilcabo.com.br
+  Início da validade: 14-07-2025
+  Vencimento: 12-10-2025
+--------------------------------------------------
+URL: external.bemfacilcabo.com.br
+  Início da validade: 14-07-2025
+  Vencimento: 12-10-2025
+--------------------------------------------------
+URL: cartaovem.com.br
+  Início da validade: 06-09-2024
+  Vencimento: 06-09-2025
+--------------------------------------------------
+URL: atendimento.cartaovem.com.br
+  Início da validade: 06-09-2024
+  Vencimento: 06-09-2025
+--------------------------------------------------
+URL: bemfacilcabo.com.br
+  Início da validade: 09-07-2025
+  Vencimento: 07-10-2025
+--------------------------------------------------
+URL: vemterminalimpressao.cartaovem.com.br
+  Início da validade: 06-09-2024
+  Vencimento: 06-09-2025
+--------------------------------------------------
+URL: adminext.vemgranderecife.com.br
+  Início da validade: 03-09-2024
+  Vencimento: 14-09-2025
+--------------------------------------------------
+URL: admin.vemgranderecife.com.br
+  Início da validade: 03-09-2024
+  Vencimento: 14-09-2025
+--------------------------------------------------
+URL: vt.vemgranderecife.com.br
+  Início da validade: 03-09-2024
+  Vencimento: 14-09-2025
+--------------------------------------------------
+URL: urbana-pe.com.br
+  Início da validade: 04-07-2025
+  Vencimento: 02-10-2025
+--------------------------------------------------
