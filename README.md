@@ -1,0 +1,1 @@
+# validade-certificado-ssl
