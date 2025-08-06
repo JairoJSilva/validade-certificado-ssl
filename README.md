@@ -134,7 +134,7 @@ URL: meusite.com.br
 
 ## 📅 Sugestão Extra
 
-Você pode transformar esse script em um monitoramento recorrente diário/semanal automatizando com cron jobs:
+Para deixar agendado a execução do script semanalmente inclua a linha abaixo no cron.
 
 ```
 cron
