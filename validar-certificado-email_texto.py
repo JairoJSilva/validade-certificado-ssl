@@ -9,7 +9,7 @@ from email.mime.multipart import MIMEMultipart
 
 EMAIL_REMETENTE = "jairo.silva@urbana-pe.com.br"
 EMAIL_DESTINATARIO = "chamados@urbana-pe.com.br"
-EMAIL_SENHA = "XnUKYb@2"  # Use uma senha de app, não a senha da sua conta!
+EMAIL_SENHA = "SUA-SENHA-DE-EMAIL"  # Use uma senha de app, não a senha da sua conta!
 SERVIDOR_SMTP = "email-ssl.com.br"
 #SERVIDOR_SMTP = "smtplw.com.br"
 PORTA_SMTP = 587
