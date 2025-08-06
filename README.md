@@ -139,6 +139,6 @@ Para deixar agendado a execução do script semanalmente inclua a linha abaixo n
 ```
 cron
 CopiarEditar
-0 8 * * * /usr/bin/python3 /caminho/script.py
+0 8 * * 1 /usr/bin/python3 /root/services/check-certificado/validar-certificado-email_texto.py
 
 ```
