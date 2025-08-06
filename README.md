@@ -17,7 +17,7 @@ Envio do relatório por e-mail através do servidor SMTP definido nas configura�
 Arquivo	Finalidade
 script.py	Código-fonte principal do verificador/enviador
 urls.txt	Lista de domínios ou hosts (um por linha) a serem verificados
- 
+
 ✉️ Configurações de E-mail
 Dentro do script, configure os seguintes parâmetros:
 
@@ -27,7 +27,7 @@ EMAIL_DESTINATARIO	Conta que receberá o relatório
 EMAIL_SENHA	Senha de aplicativo do remetente
 SERVIDOR_SMTP	Servidor SMTP
 PORTA_SMTP	Porta de conexão (587 para STARTTLS típico)
- 
+
 ⚠️ Importante: utilize sempre SENHAS DE APLICATIVO para maior segurança.
 
 🔍 Funções Principais
@@ -57,16 +57,19 @@ Para cada URL chama check_ssl_certificate() e compõe o relatório.
 Por fim chama send_email() enviando o relatório completo.
 
 📝 Exemplo de Conteúdo do urls.txt
- 
-CopiarEditar
-google.com meusite.com.br exemplo.org
+Copiar
+Editar
+google.com
+meusite.com.br
+exemplo.org
 🚀 Como Executar
 Instale o Python 3.x na máquina.
 
 Instale dependências (opcional, já são nativas do Python):
 
 bash
-CopiarEditar
+Copiar
+Editar
 pip install --upgrade pip
 Coloque o arquivo urls.txt no mesmo diretório do script.
 
@@ -75,14 +78,24 @@ Edite as configurações de e-mail no topo do script.
 Execute:
 
 bash
-CopiarEditar
+Copiar
+Editar
 python script.py
 ✅ Resultados Esperados
 Caso tudo esteja correto, o destinatário receberá um e-mail com um relatório semelhante a:
 
 markdown
-CopiarEditar
-Segue abaixo o relatório com a validade dos certificados digitais vinculados aos serviços WEB da Urbana-PE... -------------------------------------------------- URL: google.com Início da validade: 10-06-2024 Vencimento: 05-09-2024 -------------------------------------------------- URL: meusite.com.br Status: Erro: [descrição do erro] --------------------------------------------------
+Copiar
+Editar
+Segue abaixo o relatório com a validade dos certificados digitais vinculados aos serviços WEB da Urbana-PE...
+--------------------------------------------------
+URL: google.com
+  Início da validade: 10-06-2024
+  Vencimento: 05-09-2024
+--------------------------------------------------
+URL: meusite.com.br
+  Status: Erro: [descrição do erro]
+--------------------------------------------------
 🔐 Boas Práticas de Segurança
 Nunca versionar scripts com senhas. Use variáveis de ambiente.
 
@@ -90,9 +103,10 @@ Utilize senha de app para autenticação SMTP.
 
 Considere rodar o script periodicamente via cron (Linux) ou Agendador de Tarefas (Windows).
 
-📅 Agendamento
-Para deixar agendado a execução do script semanalmente inclua a linha abaixo no cron.
+📅 Sugestão Extra
+Você pode transformar esse script em um monitoramento recorrente diário/semanal automatizando com cron jobs:
 
 cron
-CopiarEditar
+Copiar
+Editar
 0 8 * * * /usr/bin/python3 /caminho/script.py
