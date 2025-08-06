@@ -1,65 +1,98 @@
+📄 Documentação – Verificação e Relatório de Certificados SSL
+📌 Objetivo do Script
+Esse script Python automatiza o processo de verificação de validade de certificados SSL de serviços web listados em um arquivo (urls.txt), gera um relatório contendo as datas de início e expiração de cada certificado, e envia esse relatório por e-mail para um destinatário definido.
 
-# 📄 **Documentação – Verificação e Relatório de Certificados SSL**
+⚙️ Visão Geral do Funcionamento
+Leitura de URLs a partir de um arquivo (urls.txt)
 
-## 📌 Objetivo
+Conexão segura via SSL com cada host (porta 443)
 
-Automatizar a verificação da validade de certificados SSL de serviços web listados em um arquivo (`urls.txt`), gerar um relatório com informações de emissão e expiração dos certificados, e enviar esse relatório por e-mail.
+Extração das informações do certificado (data de emissão e expiração)
 
----
+Montagem de um relatório descritivo
 
-## ⚙️ Funcionamento
+Envio do relatório por e-mail através do servidor SMTP definido nas configurações
 
-1. Leitura de URLs a partir do arquivo `urls.txt`
-2. Conexão com cada host via SSL (porta 443)
-3. Coleta das datas de emissão e expiração do certificado
-4. Geração do relatório completo
-5. Envio do relatório por e-mail via SMTP
+📁 Estrutura dos Arquivos
+Arquivo	Finalidade
+script.py	Código-fonte principal do verificador/enviador
+urls.txt	Lista de domínios ou hosts (um por linha) a serem verificados
+ 
+✉️ Configurações de E-mail
+Dentro do script, configure os seguintes parâmetros:
 
----
+Variável	Descrição
+EMAIL_REMETENTE	Conta que será usada para enviar o e-mail
+EMAIL_DESTINATARIO	Conta que receberá o relatório
+EMAIL_SENHA	Senha de aplicativo do remetente
+SERVIDOR_SMTP	Servidor SMTP
+PORTA_SMTP	Porta de conexão (587 para STARTTLS típico)
+ 
+⚠️ Importante: utilize sempre SENHAS DE APLICATIVO para maior segurança.
 
-## 📁 Estrutura de Arquivos
+🔍 Funções Principais
+check_ssl_certificate(hostname)
+Estabelece uma conexão SSL com o host na porta 443.
 
-| Arquivo     | Função                                                         |
-|------------|----------------------------------------------------------------|
-| script.py   | Código principal do monitor SSL                                |
-| urls.txt   | Lista de hosts/domínios para análise (um por linha)             |
+Coleta o certificado digital apresentado pelo servidor.
 
----
+Converte as datas (notBefore, notAfter) para o formato DD-MM-YYYY.
 
-## ✉️ Parâmetros de Configuração
+Retorna (data_inicio, data_vencimento) ou uma mensagem de erro.
 
-| Variável              | Descrição                                     |
-|-----------------------|-----------------------------------------------|
-| `EMAIL_REMETENTE`     | Endereço que enviará o e-mail                  |
-| `EMAIL_DESTINATARIO`  | Destinatário do relatório                      |
-| `EMAIL_SENHA`         | **Senha de aplicativo** do remetente           |
-| `SERVIDOR_SMTP`       | Servidor SMTP para envio                       |
-| `PORTA_SMTP`          | Porta de conexão (ex: 587 para STARTTLS)       |
+send_email(subject, body)
+Monta o corpo do e-mail (texto simples).
 
-⚠️ **Atenção:** utilize sempre senhas de app geradas pelo provedor.
+Realiza autenticação e envio via SMTP.
 
----
+Pode ser usada para envio do relatório final ou alertas de erro.
 
-## 🧩 Estrutura do Código
+main()
+Lê as URLs do arquivo urls.txt.
 
-### `check_ssl_certificate(hostname)`
-- Conecta ao host via SSL
-- Extrai `notBefore` e `notAfter`
-- Retorna as datas no formato `DD-MM-YYYY`
-- Em caso de erro, retorna mensagem explicativa
+Insere um texto institucional explicativo no início do relatório.
 
-### `send_email(subject, body)`
-- Monta e envia um e-mail (texto simples)
-- Usa autenticação SMTP com STARTTLS
+Para cada URL chama check_ssl_certificate() e compõe o relatório.
 
-### `main()`
-- Lê o arquivo `urls.txt`
-- Inclui texto introdutório fixo
-- Percorre cada URL aplicando `check_ssl_certificate()`
-- Gera relatório formatado
-- Envia o relatório por e-mail
+Por fim chama send_email() enviando o relatório completo.
 
----
+📝 Exemplo de Conteúdo do urls.txt
+ 
+CopiarEditar
+google.com meusite.com.br exemplo.org
+🚀 Como Executar
+Instale o Python 3.x na máquina.
 
-## 📝 Exemplo de `urls.txt`
+Instale dependências (opcional, já são nativas do Python):
 
+bash
+CopiarEditar
+pip install --upgrade pip
+Coloque o arquivo urls.txt no mesmo diretório do script.
+
+Edite as configurações de e-mail no topo do script.
+
+Execute:
+
+bash
+CopiarEditar
+python script.py
+✅ Resultados Esperados
+Caso tudo esteja correto, o destinatário receberá um e-mail com um relatório semelhante a:
+
+markdown
+CopiarEditar
+Segue abaixo o relatório com a validade dos certificados digitais vinculados aos serviços WEB da Urbana-PE... -------------------------------------------------- URL: google.com Início da validade: 10-06-2024 Vencimento: 05-09-2024 -------------------------------------------------- URL: meusite.com.br Status: Erro: [descrição do erro] --------------------------------------------------
+🔐 Boas Práticas de Segurança
+Nunca versionar scripts com senhas. Use variáveis de ambiente.
+
+Utilize senha de app para autenticação SMTP.
+
+Considere rodar o script periodicamente via cron (Linux) ou Agendador de Tarefas (Windows).
+
+📅 Agendamento
+Para deixar agendado a execução do script semanalmente inclua a linha abaixo no cron.
+
+cron
+CopiarEditar
+0 8 * * * /usr/bin/python3 /caminho/script.py
